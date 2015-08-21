@@ -5,11 +5,16 @@
 {% block content %}
   <ul class="messages">
     {% for message in messages %}
-      <li class="message">{{ message.message }}</li>
+      <li class="message">
+        <div>{{ message.symbol }}</div>
+        <div>{{ message.date.toString() }}</div>
+        <div>{{ message.open }}</div>
+        <div>{{ message.close }}</div>
+      </li>
     {% endfor %}
   </ul>
-  <form action="/messages" method="post" id="message-form">
+  <!-- <form action="/messages" method="post" id="message-form">
     <textarea placeholder="Insert a message" name="message"
       onkeydown="if (event.keyCode == 13) document.getElementById('message-form').submit();"></textarea>
-  </form>
+  </form> -->
 {% endblock %}

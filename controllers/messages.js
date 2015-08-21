@@ -1,6 +1,7 @@
 'use strict';
 var views = require('co-views');
 var parse = require('co-body');
+var yahooFinance = require('yahoo-finance');
 
 var messages = [
   { id: 0, message: 'Koa next generation web framework for node.js' },
@@ -12,10 +13,23 @@ var render = views(__dirname + '/../views', {
 });
 
 module.exports.home = function *home() {
-  this.body = yield render('list', { 'messages': messages });
+  var data = yield yahooFinance.historical({
+    symbol: 'AAPL',
+    from: '2000-08-21',
+    to: '2015-08-20'
+  });
+
+  // var data = yield yahooFinance.snapshot({
+  //   symbol: 'AAPL',
+  //   fields: ['s', 'n', 'd1', 'l1', 'y', 'r'],
+  // });
+
+  // console.log(data);
+  this.body = yield render('list', { 'messages': data });
 };
 
 module.exports.list = function *list() {
+
   this.body = yield messages;
 };
 
