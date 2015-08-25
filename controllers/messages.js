@@ -16,7 +16,7 @@ module.exports.home = function *home() {
   var data = yield yahooFinance.historical({
     symbol: 'AAPL',
     from: '2000-08-21',
-    to: '2015-08-20'
+    to: '2015-08-25'
   });
 
   // var data = yield yahooFinance.snapshot({

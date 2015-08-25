@@ -1,4 +1,5 @@
 'use strict';
+var landing = require('./controllers/landing');
 var messages = require('./controllers/messages');
 var compress = require('koa-compress');
 var logger = require('koa-logger');
@@ -11,7 +12,7 @@ var app = module.exports = koa();
 // Logger
 app.use(logger());
 
-app.use(route.get('/', messages.home));
+app.use(route.get('/', landing.react));
 app.use(route.get('/messages', messages.list));
 app.use(route.get('/messages/:id', messages.fetch));
 app.use(route.post('/messages', messages.create));
