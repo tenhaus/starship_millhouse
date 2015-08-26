@@ -1,14 +1,16 @@
 import React from 'react';
-import Landing from './Landing/Landing';
+import App from './App/App';
 
 var AppElement = document.getElementById('app');
+
+let injectTapEventPlugin = require("react-tap-event-plugin");
+injectTapEventPlugin();
 
 
 window.onload = function() {
   React.render(
     <div>
-      Hey, what up, React
-      <Landing />
+      <App />
     </div>,
     AppElement
   );

@@ -5,7 +5,7 @@ module.exports = {
 
     context: path.join(__dirname, "/../client"),
     entry: {
-      app: "./app.js"
+      index: "./index.js"
     },
 
     output: {
@@ -15,8 +15,8 @@ module.exports = {
 
     module: {
       loaders: [
-        {test: /\.css$/, loader: "style!css" },
-        {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader", query: {stage: 1}}
+        {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader", query: {stage: 1}},
+        {test: /\.scss$/, loader: "style!css!sass"},
       ]
     },
     devtool: '#source-map',
@@ -25,7 +25,7 @@ module.exports = {
       port: 8090,
       publicPath: '/',        // Where webpack exposes bundles
       hot: false,                  //  on its own in-memory file system
-      indexEntry: 'app',    // Entry to add HNR code to (EntryChunk or CommonsChunk)
+      indexEntry: 'index',    // Entry to add HNR code to (EntryChunk or CommonsChunk)
       secure: true,           // use https or http
       stats: {
         colors: true,
