@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
 
-    context: path.join(__dirname, "/../public/scripts"),
+    context: path.join(__dirname, "/../client"),
     entry: {
       app: "./app.js"
     },
@@ -24,7 +24,7 @@ module.exports = {
       host: process.env.USER_IP || 'localhost',
       port: 8090,
       publicPath: '/',        // Where webpack exposes bundles
-      hot: true,                  //  on its own in-memory file system
+      hot: false,                  //  on its own in-memory file system
       indexEntry: 'app',    // Entry to add HNR code to (EntryChunk or CommonsChunk)
       secure: true,           // use https or http
       stats: {
