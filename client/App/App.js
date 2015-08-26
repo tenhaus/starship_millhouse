@@ -1,11 +1,10 @@
 import React from 'react';
 
 import Landing from '../Landing/Landing';
-import {RaisedButton, Styles} from 'material-ui'
+import {Styles} from 'material-ui'
+import './_App.scss';
 
 let ThemeManager = new Styles.ThemeManager();
-
-import './_App.scss';
 
 class App extends React.Component {
 
@@ -18,7 +17,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <RaisedButton label='Test' />
         <Landing />
       </div>
     );
