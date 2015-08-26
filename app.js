@@ -8,6 +8,8 @@ var route = require('koa-route');
 var koa = require('koa');
 var path = require('path');
 var app = module.exports = koa();
+var middleware = require('webpack-koa-middleware');
+var webpackCfg = require('./webpack/config');
 
 // Logger
 app.use(logger());
@@ -23,6 +25,8 @@ app.use(serve(path.join(__dirname, 'public')));
 
 // Compress
 app.use(compress());
+
+app.use(middleware(webpackCfg));
 
 if (!module.parent) {
   app.listen(3000);
