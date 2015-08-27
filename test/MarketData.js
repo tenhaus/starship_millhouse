@@ -5,11 +5,13 @@ var _ = require('lodash');
 var MarketData = require('../lib/MarketData');
 
 describe('Symbols', function() {
+
   it('should return valid symbols', function(done) {
     _.forEach(MarketData.symbols, function(symbol) {
       if(symbol.Symbol === 'AAPL') done();
     });
   });
+
 });
 
 describe('Sync', function() {
