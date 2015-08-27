@@ -39,8 +39,6 @@ describe('Routes', function () {
 	});
 	
 	describe('GET /api/symbols', function () {
-		this.timeout(100000);
-		
 		it('should return valid symbols', function(done) {
 			request()
         .get('/api/symbols')
