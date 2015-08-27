@@ -2,32 +2,31 @@
 'use strict';
 var superagent = require('supertest');
 var app = require('../app');
+var expect = require('expect.js');
 
 function request() {
 	return superagent(app.listen());
 }
 
 describe('Routes', function () {
-  describe('GET /', function () {
+  
+	describe('GET /', function () {
     it('should return 200', function (done) {
       request()
         .get('/')
         .expect(200, done);
     });
   });
-  describe('GET /messages', function () {
-    it('should return 200', function (done) {
+	
+	describe('GET /api/test', function () {
+    it('should return {test:test}', function (done) {
       request()
-        .get('/messages')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+        .get('/api/test')
+        .end(function(err, result) {
+					expect(result.body).to.eql({test: 'test'});
+					done();
+				});
     });
   });
-  describe('GET /messages/notfound', function () {
-    it('should return 404', function (done) {
-      request()
-        .get('/messages/notfound')
-        .expect(404, done);
-    });
-  });
+  
 });

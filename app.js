@@ -1,5 +1,4 @@
 'use strict';
-var index = require('./controllers/index');
 var messages = require('./controllers/messages');
 var compress = require('koa-compress');
 var logger = require('koa-logger');
@@ -11,11 +10,20 @@ var app = module.exports = koa();
 var middleware = require('webpack-koa-middleware');
 var webpackCfg = require('./webpack/config');
 
+// Controllers
+var index = require('./controllers/index');
+var millhouse = require('./controllers/millhouse');
+
 // Logger
 app.use(logger());
 
-// Routes
+// Index Route
 app.use(route.get('/', index.root));
+
+// API
+app.use(route.get('/api/test', millhouse.test));
+
+// Something that came with koa
 app.use(route.get('/async', messages.delay));
 
 // Serve static files
