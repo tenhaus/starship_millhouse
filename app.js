@@ -22,6 +22,7 @@ app.use(route.get('/', index.root));
 
 // API
 app.use(route.get('/api/test', millhouse.test));
+app.use(route.get('/api/symbols', millhouse.symbols));
 
 // Something that came with koa
 app.use(route.get('/async', messages.delay));
