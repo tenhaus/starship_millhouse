@@ -5,7 +5,7 @@ module.exports = {
 
     context: path.join(__dirname, "/../client"),
     entry: {
-      index: "./index.js"
+      client: "./client.js"
     },
 
     output: {
@@ -32,7 +32,7 @@ module.exports = {
       port: 8090,
       publicPath: '/',        // Where webpack exposes bundles
       hot: false,                  //  on its own in-memory file system
-      indexEntry: 'index',    // Entry to add HNR code to (EntryChunk or CommonsChunk)
+      indexEntry: 'client',    // Entry to add HNR code to (EntryChunk or CommonsChunk)
       secure: true,           // use https or http
       stats: {
         colors: true,
