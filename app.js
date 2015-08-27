@@ -14,10 +14,8 @@ var webpackCfg = require('./webpack/config');
 // Logger
 app.use(logger());
 
+// Routes
 app.use(route.get('/', index.root));
-app.use(route.get('/messages', messages.list));
-app.use(route.get('/messages/:id', messages.fetch));
-app.use(route.post('/messages', messages.create));
 app.use(route.get('/async', messages.delay));
 
 // Serve static files
@@ -26,6 +24,7 @@ app.use(serve(path.join(__dirname, 'public')));
 // Compress
 app.use(compress());
 
+// Webpack 
 app.use(middleware(webpackCfg));
 
 if (!module.parent) {
