@@ -5,6 +5,7 @@ var logger = require('koa-logger');
 var serve = require('koa-static');
 var route = require('koa-route');
 var koa = require('koa');
+var mongo = require('koa-mongo');
 var path = require('path');
 var app = module.exports = koa();
 var middleware = require('webpack-koa-middleware');
@@ -33,8 +34,19 @@ app.use(serve(path.join(__dirname, 'public')));
 // Compress
 app.use(compress());
 
-// Webpack 
+// Webpack
 app.use(middleware(webpackCfg));
+
+// Mongo
+app.use(mongo({
+  host: 'localhost',
+  port: 27017,
+  db: 'millhouse',
+  max: 100,
+  min: 1,
+  timeout: 30000,
+  log: false
+}));
 
 if (!module.parent) {
   app.listen(3000);

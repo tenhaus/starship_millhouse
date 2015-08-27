@@ -1,10 +1,10 @@
 var Yahoo = require('yahoo-finance');
-var Symbols = require('../data/symbols.json');
+var MarketData = require('../lib/MarketData');
 
 module.exports.test = function *test() {
   this.body = yield {test: 'test'};
 };
 
 module.exports.symbols = function *symbols() {
-  this.body = yield Symbols;
+  this.body = yield MarketData.symbols;
 };

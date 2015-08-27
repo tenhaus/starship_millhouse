@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --harmony app.js",
+    "start": "forever -w -c \"node --harmony\" app.js",
     "test": "mocha --harmony"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "koa": "^0.6.0",
     "koa-compress": "^1.0.6",
     "koa-logger": "^1.2.0",
+    "koa-mongo": "^0.4.1",
     "koa-route": "^1.1.4",
     "koa-static": "^1.4.5",
     "lodash": "^3.10.1",
