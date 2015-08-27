@@ -30,15 +30,13 @@ describe('Routes', function () {
     });
   });
 	
-	describe('GET /api/symbols', function () {
+	describe('/api/symbols', function () {
 		it('should return 200', function(done) {
 			request()
-        .get('/')
+        .get('/api/symbols')
         .expect(200, done);
 		});
-	});
-	
-	describe('GET /api/symbols', function () {
+		
 		it('should return valid symbols', function(done) {
 			request()
         .get('/api/symbols')
@@ -47,7 +45,8 @@ describe('Routes', function () {
 						if(symbol.Symbol === 'AAPL') done();
 					});
 				});
-		});
+		});				
 	});
+	
   
 });
