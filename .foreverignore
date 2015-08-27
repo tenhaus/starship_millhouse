@@ -1,3 +1,4 @@
 **/.tmp/**
 **/.git/**
+**/test/**
 **/node_modules/**
