@@ -17,6 +17,9 @@ describe('Sync', function() {
   it('Should detect missing symbol data', function(done) {
   });
 
+  it('Should detect partial date range', function(done) {
+  });
+
   it('Should load missing data', function(done) {
   });
 
