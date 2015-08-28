@@ -25,4 +25,7 @@ describe('Installer', function() {
     done();
   });
 
+  it('Should load data', function *(done) {
+  });
+
 });
