@@ -40,15 +40,15 @@ app.use(compress());
 app.use(middleware(webpackCfg));
 
 // Mongo
-app.use(mongo({
-  host: 'localhost',
-  port: 27017,
-  db: 'millhouse',
-  max: 100,
-  min: 1,
-  timeout: 30000,
-  log: false
-}));
+// app.use(mongo({
+//   host: 'localhost',
+//   port: 27017,
+//   db: 'millhouse',
+//   max: 100,
+//   min: 1,
+//   timeout: 30000,
+//   log: false
+// }));
 
 // Mongoose connection
 mongoose.connect('mongodb://localhost/millhouse');
