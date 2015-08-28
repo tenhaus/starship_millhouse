@@ -6,7 +6,9 @@ var serve = require('koa-static');
 var route = require('koa-route');
 var koa = require('koa');
 var mongo = require('koa-mongo');
+var mongoose = require('mongoose');
 var path = require('path');
+var fs = require("fs");
 var app = module.exports = koa();
 var middleware = require('webpack-koa-middleware');
 var webpackCfg = require('./webpack/config');
@@ -47,6 +49,21 @@ app.use(mongo({
   timeout: 30000,
   log: false
 }));
+
+// Mongoose connection
+mongoose.connect('mongodb://localhost/millhouse');
+mongoose.connection.on("error", function(err) {
+  console.log(err);
+});
+
+// Mongoose models
+var modelsPath = path.join(__dirname, 'models');
+
+fs.readdirSync(modelsPath).forEach(function(file) {
+  if (~file.indexOf("js")) {
+    require(modelsPath + "/" + file);
+  }
+});
 
 if (!module.parent) {
   app.listen(3000);
