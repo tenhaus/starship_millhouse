@@ -56,7 +56,7 @@ mongoose.connection.on("error", function(err) {
   console.log(err);
 });
 
-// Mongoose models
+// Load mongoose models
 var modelsPath = path.join(__dirname, 'models');
 
 fs.readdirSync(modelsPath).forEach(function(file) {
@@ -65,6 +65,7 @@ fs.readdirSync(modelsPath).forEach(function(file) {
   }
 });
 
+// Serve this bitch
 if (!module.parent) {
   app.listen(3000);
   console.log('listening on port 3000');
