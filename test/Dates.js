@@ -46,6 +46,27 @@ describe('Dates', function() {
     done();
   });
 
+  it('Should offset weeks', function(done) {
+    var date = new Date(1980, 08, 10);
+    var formattedDate = Dates.weekOffset(date, 1);
+    expect(formattedDate).to.eql('1980-09-17');
+    done();
+  });
+
+  it('Should offset months', function(done) {
+    var date = new Date(1980, 08, 10);
+    var formattedDate = Dates.monthOffset(date, 1);
+    expect(formattedDate).to.eql('1980-10-10');
+    done();
+  });
+
+  it('Should offset years', function(done) {
+    var date = new Date(1980, 08, 10);
+    var formattedDate = Dates.yearOffset(date, 10);
+    expect(formattedDate).to.eql('1990-09-10');
+    done();
+  });
+
   it('Should roll to the next month', function(done) {
     var date = new Date(1980, 08, 30);
     var formattedDate = Dates.dayOffset(date, 1);
