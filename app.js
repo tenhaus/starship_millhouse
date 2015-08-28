@@ -50,19 +50,16 @@ app.use(middleware(webpackCfg));
 //   log: false
 // }));
 
+var mongoUrl = 'mongodb://localhost/millhouse';
+
+if(process.env.NODE_ENV === 'development') {
+  mongoUrl = 'mongodb://localhost/millhouse-development';
+}
+
 // Mongoose connection
-mongoose.connect('mongodb://localhost/millhouse');
+mongoose.connect(mongoUrl);
 mongoose.connection.on("error", function(err) {
   console.log(err);
-});
-
-// Load mongoose models
-var modelsPath = path.join(__dirname, 'models');
-
-fs.readdirSync(modelsPath).forEach(function(file) {
-  if (~file.indexOf("js")) {
-    require(modelsPath + "/" + file);
-  }
 });
 
 // Serve this bitch
