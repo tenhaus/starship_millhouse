@@ -1,10 +1,12 @@
 import React from 'react';
 
+import './_CandleStick.scss';
+
 class CandleStick extends React.Component {
   render() {
     return (
-      <div>
-        CandleStick, hey hey
+      <div className='chart-wrapper {this.props.className}'>
+        CandleStick
       </div>
     );
   }

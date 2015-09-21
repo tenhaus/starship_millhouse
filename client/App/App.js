@@ -19,7 +19,9 @@ class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <CandleStick />
+        <div className='main-chart-wrapper'>
+          <CandleStick />
+        </div>
       </div>
     );
   }
