@@ -8,7 +8,7 @@ class MarketDataStore {
 
   constructor() {
     var self = this;
-    this.symbols = ['AAPL', 'TVIX', 'TMUX', 'S'];
+    this.symbols = ['AAPL', 'TVIX', 'TMUS', 'S', 'XIV'];
     Client.connect('qsws-us-e-01.aws.barchart.com', 'chayen', 'devtest');
 
     _.forEach(this.symbols, function(symbol) {
