@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'react-router';
 import Routes from './routes';
 import TapEvents from 'react-tap-event-plugin';
-import App from './App/App';
+import App from './components/App/App';
 
 var AppElement = document.getElementById('app');
 
