@@ -1,32 +1,32 @@
 import Alt from '../alt';
 import MarketDataActions from '../actions/MarketDataActions';
-import _ from 'lodash';
-
-var Client = new Barchart.RealtimeData.Connection();
 
 class MarketDataStore {
 
   constructor() {
-    var self = this;
     this.symbols = ['AAPL', 'TVIX', 'TMUS', 'S', 'XIV'];
-    Client.connect('qsws-us-e-01.aws.barchart.com', 'chayen', 'devtest');
-
-    _.forEach(this.symbols, function(symbol) {
-      Client.on('marketUpdate', self.onMarketUpdate, symbol);
-    });
+    this.data = {};
 
     this.bindListeners({
-      handleGetQuote: MarketDataActions.GET_QUOTE
+      handleAddSymbol: MarketDataActions.ADD_SYMBOL,
+      handleAddSymbolQuote: MarketDataActions.ADD_SYMBOL_QUOTE
     });
+
   }
 
-  onMarketUpdate(message) {
-    var quote = Client.getMarketState().getQuote(message.symbol);
-    console.log(quote.symbol, quote.tradePrice, quote.tradeSize);
-  };
+  handleAddSymbol(symbol) {
+    this.data[symbol] = {
+      quotes: [],
+      count: 0
+    };
 
-  handleGetQuote(quote) {
-    this.quote = quote;
+    console.log(this.data, symbol);
+  }
+
+  handleAddSymbolQuote(quote) {
+    this.data[quote.symbol].count += 1;
+    quote.key = quote.symbol + '_' + this.data[quote.symbol].count;
+    this.data[quote.symbol].quotes.push(quote);
   }
 }
 
