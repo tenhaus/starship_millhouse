@@ -3,7 +3,7 @@ import MarketDataStore from '../../stores/MarketDataStore';
 import MarketDataActions from '../../actions/MarketDataActions';
 import _ from 'lodash';
 
-var testSymbol = 'AAPL';
+var testSymbol = 'CL^F';
 
 class ChartView extends React.Component {
 
