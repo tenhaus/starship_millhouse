@@ -9,17 +9,12 @@ class MarketDataActions {
   }
 
   addSymbol(symbol) {
-    var self = this;
-
-    Client.on('marketUpdate', function(message) {
-      var quote = Client.getMarketState().getQuote(message.symbol);
-      self.actions.addSymbolQuote(quote);
-    }, symbol);
-
+    Client.on('marketUpdate', this.actions.addSymbolQuote, symbol);
     this.dispatch(symbol);
   }
 
-  addSymbolQuote(quote) {
+  addSymbolQuote(message) {
+    var quote = Client.getMarketState().getQuote(message.symbol);
     this.dispatch(quote);
   }
 

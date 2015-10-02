@@ -3,6 +3,8 @@ import MarketDataStore from '../../stores/MarketDataStore';
 import MarketDataActions from '../../actions/MarketDataActions';
 import _ from 'lodash';
 
+var testSymbol = 'AAPL';
+
 class ChartView extends React.Component {
 
   constructor() {
@@ -16,7 +18,7 @@ class ChartView extends React.Component {
 
   componentDidMount() {
     MarketDataStore.listen(this.onChange);
-    MarketDataActions.addSymbol('AAPL');
+    MarketDataActions.addSymbol(testSymbol);
   }
 
   componentWillUnmount() {
@@ -28,10 +30,10 @@ class ChartView extends React.Component {
   }
 
   renderSales() {
-    if(this.state.quotes.data.hasOwnProperty('AAPL')) {
-      return _.map(this.state.quotes.data.AAPL.quotes, function(quote) {
+    if(this.state.quotes.data.hasOwnProperty(testSymbol)) {
+      return _.map(this.state.quotes.data[testSymbol], function(quote) {
         return (
-          <li key={quote.key}>{quote.lastUpdate}, {quote.tradePrice}</li>
+          <li key={quote.id}>{quote.time}, {quote.tradeSize}, {quote.tradePrice}</li>
         );
       });
     }
