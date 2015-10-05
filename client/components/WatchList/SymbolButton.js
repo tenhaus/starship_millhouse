@@ -1,4 +1,5 @@
 import React from 'react';
+import {Avatar, ListItem, FontIcon} from 'material-ui';
 
 class SymbolButton extends React.Component {
 
@@ -11,14 +12,26 @@ class SymbolButton extends React.Component {
     e.preventDefault();
     this.props.onSymbolSelected(this.props.symbol);
   }
-  
+
   render() {
-    return <a onClick={this.onSymbolSelected} href='#'>{this.props.symbol}</a>;
+    let selectedIcon = null;
+
+    if(this.props.selected) {
+      selectedIcon = <FontIcon className="material-icons">visibility</FontIcon>;
+    }
+
+    return (
+      <ListItem
+        leftIcon={selectedIcon}
+        primaryText={this.props.symbol}
+        onClick={this.onSymbolSelected} />
+    );
   }
 }
 
 SymbolButton.defaultProps = {
   symbol: '',
+  selected: false,
   onSymbolSelected: function(symbol) {}
 };
 
