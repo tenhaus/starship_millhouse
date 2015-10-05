@@ -14,22 +14,20 @@
 
   .main {
     flex: 1;
-    background-color: #ffff00;
+    background-color: #FFB026;
   }
 
   .left-column, .right-column {
     flex: 0 0 16rem;
-    background-color: #ff0000;
   }
 
   .left-column {
     order: -1;
-    background-color: #00ff00;
   }
 
   .header, .footer {
     height: 50px;
-    background-color: #ededed;
+    background-color: #F35D5B;
   }
 }
 
