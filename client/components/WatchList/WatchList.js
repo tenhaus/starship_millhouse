@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import {Avatar, List, ListItem, FontIcon} from 'material-ui';
+
 import WatchListActions from '../../actions/WatchListActions';
 import WatchListStore from '../../stores/WatchListStore';
 
@@ -22,7 +24,19 @@ class WatchList extends React.Component {
     var self = this;
 
     return _.map(self.state.symbols, function(symbol) {
-      return <SymbolButton symbol={symbol} onSymbolSelected={self.onSymbolSelected} />;
+      let selected = symbol === self.state.selectedSymbol;
+      let avatar = <Avatar>{symbol}</Avatar>;
+      let selectedIcon = null;
+
+      if(selected) {
+        selectedIcon = <FontIcon className="material-icons">visibility</FontIcon>;
+      }
+
+      return (
+        <ListItem
+          leftIcon={selectedIcon}
+          primaryText={symbol} />
+      );
     });
   }
 
@@ -31,7 +45,9 @@ class WatchList extends React.Component {
 
     return (
       <div>
-        <ul>{symbols}</ul>
+        <List subheader="Watch List">
+          {symbols}
+        </List>
       </div>
     );
   }

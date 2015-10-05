@@ -21,10 +21,17 @@ class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <div className='main-chart-wrapper'>
-          <WatchList />
-          <ChartView />
+        <div className='header top'></div>
+        <div className='main-wrapper'>
+          <div className='main'>
+            <ChartView />
+          </div>
+          <div className='left-column'>
+            <WatchList className='watch-list'/>
+          </div>
+          <div className='right-column'></div>
         </div>
+        <div className='footer'></div>
       </div>
     );
   }
