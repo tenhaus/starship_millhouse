@@ -1,9 +1,12 @@
 import React from 'react';
+import _ from 'lodash';
 
 import Landing from '../Landing/Landing';
 import CandleStick from '../CandleStick/CandleStick';
 import ChartView from '../ChartView/ChartView';
 import WatchList from '../WatchList/WatchList';
+import MarketDataActions from '../../actions/MarketDataActions';
+import WatchListStore from '../../stores/WatchListStore';
 
 import {Styles} from 'material-ui'
 import './_App.scss';
@@ -11,6 +14,31 @@ import './_App.scss';
 let ThemeManager = new Styles.ThemeManager();
 
 class App extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      watchList: WatchListStore.getState()
+    }
+
+    this.onWatchListChange = this.onWatchListChange.bind(this);
+  }
+
+  componentDidMount() {
+    WatchListStore.listen(this.onWatchListChange);
+
+    _.forEach(this.state.watchList.symbols, function(symbol) {
+      MarketDataActions.addSymbol(symbol);
+    })
+  }
+
+  componentWillUnmount() {
+    WatchListStore.unlisten(this.onWatchListChange);
+  }
+
+  onWatchListChange(state) {
+    this.setState({watchList: WatchListStore.getState()});
+  }
 
   getChildContext() {
     return {

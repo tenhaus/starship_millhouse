@@ -7,6 +7,7 @@ class MarketDataStore {
   constructor() {
     this.selectedSymbol = 'TVIX';
     this.symbols = [];
+    this.watchedSymbols = [];
     this.data = {};
 
     this.bindListeners({
@@ -22,13 +23,20 @@ class MarketDataStore {
 
   handleAddSymbol(symbol) {
     this.symbols.push(symbol);
-    this.data[symbol] = [];
+    this.data[symbol] = {
+      quotes: []
+    };
   }
 
   handleAddSymbolQuote(quote) {
-    if(!quote.tradePrice) return;
+    console.log(quote);
+    this.data[quote.symbol].openPrice = quote.openPrice;
+    this.data[quote.symbol].highPrice = quote.highPrice;
+    this.data[quote.symbol].lowPrice = quote.lowPrice;
+    this.data[quote.symbol].settlementPrice = quote.settlementPrice;
 
-    this.data[quote.symbol].push({
+
+    this.data[quote.symbol].quotes.push({
       id: _.uniqueId(quote.symbol),
       time: quote.time.toString(),
       tradeSize: quote.tradeSize,

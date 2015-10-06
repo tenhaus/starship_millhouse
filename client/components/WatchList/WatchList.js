@@ -16,7 +16,7 @@ class WatchList extends React.Component {
 
     this.state = {
       watchList: WatchListStore.getState(),
-      selectedSymbol: MarketDataStore.selectedSymbol
+      selectedSymbol: MarketDataStore.getState().selectedSymbol
     };
 
     this.renderSymbols = this.renderSymbols.bind(this);
@@ -52,7 +52,7 @@ class WatchList extends React.Component {
     var self = this;
 
     return _.map(self.state.watchList.symbols, function(symbol) {
-      let selected = symbol === self.state.selectedSymbol;
+      let selected = symbol == self.state.selectedSymbol;
 
       return (
         <SymbolButton symbol={symbol}
