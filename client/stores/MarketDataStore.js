@@ -5,13 +5,19 @@ import _ from 'lodash';
 class MarketDataStore {
 
   constructor() {
+    this.selectedSymbol = 'TVIX';
     this.symbols = [];
     this.data = {};
 
     this.bindListeners({
+      handleSelectSymbol: MarketDataActions.SELECT_SYMBOL,
       handleAddSymbol: MarketDataActions.ADD_SYMBOL,
       handleAddSymbolQuote: MarketDataActions.ADD_SYMBOL_QUOTE
     });
+  }
+
+  handleSelectSymbol(symbol) {
+    this.selectedSymbol = symbol;
   }
 
   handleAddSymbol(symbol) {
@@ -19,9 +25,9 @@ class MarketDataStore {
     this.data[symbol] = [];
   }
 
-  handleAddSymbolQuote(quote) {    
+  handleAddSymbolQuote(quote) {
     if(!quote.tradePrice) return;
-    
+
     this.data[quote.symbol].push({
       id: _.uniqueId(quote.symbol),
       time: quote.time.toString(),

@@ -3,6 +3,8 @@ import MarketDataStore from '../../stores/MarketDataStore';
 import MarketDataActions from '../../actions/MarketDataActions';
 import _ from 'lodash';
 
+import SymbolSummary from '../SymbolSummary/SymbolSummary';
+
 var testSymbol = 'AAPL';
 
 class ChartView extends React.Component {
@@ -43,6 +45,7 @@ class ChartView extends React.Component {
 
     return (
       <div>
+        <SymbolSummary />
         <ul className='sales'>{sales}</ul>
       </div>
     );
