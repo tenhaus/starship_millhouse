@@ -5,8 +5,6 @@ import _ from 'lodash';
 
 import SymbolSummary from '../SymbolSummary/SymbolSummary';
 
-var testSymbol = 'TVIX';
-
 class ChartView extends React.Component {
 
   constructor() {
@@ -31,8 +29,10 @@ class ChartView extends React.Component {
   }
 
   renderSales() {
-    if(this.state.symbols.data.hasOwnProperty(testSymbol)) {
-      let quote = _.last(this.state.symbols.data[testSymbol].quotes);
+    var symbol = this.state.symbols.selectedSymbol;
+
+    if(this.state.symbols.data.hasOwnProperty(symbol)) {
+      let quote = _.last(this.state.symbols.data[symbol].quotes);
       if(!quote) return;
 
       return (

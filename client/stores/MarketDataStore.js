@@ -5,7 +5,7 @@ import _ from 'lodash';
 class MarketDataStore {
 
   constructor() {
-    this.selectedSymbol = 'TVIX';
+    this.selectedSymbol = 'ACI';
     this.symbols = [];
     this.watchedSymbols = [];
     this.data = {};
@@ -33,7 +33,11 @@ class MarketDataStore {
     this.data[quote.symbol].openPrice = quote.openPrice;
     this.data[quote.symbol].highPrice = quote.highPrice;
     this.data[quote.symbol].lowPrice = quote.lowPrice;
-    this.data[quote.symbol].settlementPrice = quote.settlementPrice;
+    this.data[quote.symbol].settlementPrice = quote.tradePrice;
+
+    if(!quote.tradePrice) {
+      this.data[quote.symbol].settlementPrice = '?';
+    }
 
 
     this.data[quote.symbol].quotes.push({

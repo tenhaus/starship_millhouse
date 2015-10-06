@@ -5,7 +5,7 @@ import _ from 'lodash';
 class WatchListStore {
 
   constructor() {
-    this.symbols = ['TVIX', 'AAPL', 'XIV', 'IBM', 'MSFT'];
+    this.symbols = ['ACI', 'BTU', 'ADBE', 'TVIX', 'UVXY'];
 
     this.bindListeners({
       handleAddSymbol: WatchListActions.ADD_SYMBOL,
