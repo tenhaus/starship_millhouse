@@ -1,41 +1,25 @@
 import React from 'react';
 import Radium from 'radium';
+import { TextField, FlatButton, Colors } from 'material-ui';
 
-import {
-  Card, CardHeader, CardMedia, CardTitle,
-  CardActions, CardText, RaisedButton, Avatar,
-  FlatButton
-} from 'material-ui';
+import DesignStore from '../stores/DesignStore';
+import DesignActions from '../actions/DesignActions';
 
 import './_Landing.scss';
 import YinYang from './images/yin_yang.png';
 
-@Radium
 class Landing extends React.Component {
+
+  onEnter() {
+    DesignActions.loadUrl('eeee');
+  }
+
   render() {
     return (
       <div id='landing'>
-        <Card className='card'>
-          <CardHeader
-            title="Starship Millhouse"
-            subtitle="Advanced Trading Platform"
-            avatar={<Avatar>SM</Avatar>}/>
-          <CardMedia overlay={<CardTitle title="Title" subtitle="Subtitle"/>}>
-            <img src={YinYang}/>
-          </CardMedia>
-          <CardTitle title="This is some shit" subtitle="With a subtitle"/>
-          <CardActions>
-            <FlatButton label="You Can do this"/>
-            <FlatButton label="Or This"/>
-          </CardActions>
-          <CardText>
-            Filla Text, Yo!
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
-        </Card>
+        <TextField hintText="What's the URL?"
+          underlineFocusStyle={{borderColor: '#c0392b', color: '#ffffff'}}
+          onEnterKeyDown={this.onEnter} />
       </div>
     );
   }
