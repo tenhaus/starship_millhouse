@@ -10,11 +10,33 @@ import YinYang from './images/yin_yang.png';
 
 class Landing extends React.Component {
 
+  constructor() {
+    super();
+
+    this.state = DesignStore.getState();
+  }
+
+  componentDidMount() {
+    DesignStore.listen(this.onChange);
+  }
+
+  componentWillUnmount() {
+    DesignStore.unlisten(this.onChange);
+  }
+
+  onChange(state) {
+    this.setState(state);
+  }
+
   onEnter() {
     DesignActions.loadUrl('eeee');
   }
 
   render() {
+
+    if(this.state.urlLoaded) {
+    }
+
     return (
       <div id='landing'>
         <TextField hintText="What's the URL?"

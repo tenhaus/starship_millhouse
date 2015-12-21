@@ -5,6 +5,7 @@ class DesignStore {
 
   constructor() {
     this.url = '';
+    this.urlLoaded = false;
     this.source = '';
 
     this.bindListeners({
